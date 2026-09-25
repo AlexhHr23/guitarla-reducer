@@ -79,7 +79,7 @@ export const cartReducer = (
         }
     }
 
-    if ( action.type === 'decrease-quantity') {
+    if (action.type === 'decrease-quantity') {
         const updatedCart = state.cart.map(item => {
             if (item.id === action.paylod.id && item.quantity > MIN_ITEMS) {
                 return {
@@ -93,6 +93,14 @@ export const cartReducer = (
         return {
             ...state,
             cart: updatedCart
+        }
+    }
+
+    if (action.type === 'clean-cart') {
+        
+        return {
+            ...state,
+            cart: []
         }
     }
 }
