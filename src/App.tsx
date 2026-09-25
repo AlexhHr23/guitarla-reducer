@@ -30,7 +30,7 @@ function App() {
                   <Guitar 
                     key={guitar.id}
                     guitar={guitar}
-                    addToCart={addToCart}
+                    dispatch={dispatch}
                   />
               ))}
               

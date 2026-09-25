@@ -10,7 +10,7 @@ export type CartActions =
 
 
 export type CartState = {
-    data: Guitar[] 
+    data: Guitar[]
     cart: CartItem[]
 }
 
@@ -28,9 +28,21 @@ export const cartReducer = (
 ) => {
 
     if (action.type === 'add-to-cart') {
-        
+
+        const itemExists = state.cart.find(guitar => guitar.id === action.paylod.item.id)
+        let updatedCart : CartItem[] = []
+        if (itemExists >= 0) { // existe en el carrito
+            if (state.cart[itemExists].quantity >= MAX_ITEMS) return
+            updatedCart = [...state.cart]
+            updatedCart[itemExists].quantity++
+        } else {
+            const newItem: CartItem = { ...action.paylod.item, quantity: 1 }
+            updatedCart = [...state.cart, newItem]
+        }
+
         return {
-            ...state
+            ...state,
+            cart: updatedCart
         }
     }
 }
