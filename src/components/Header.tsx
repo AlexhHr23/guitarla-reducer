@@ -5,14 +5,12 @@ import { CartActions } from "../reducers/cart-reducer"
 type HeaderProps = {
     cart: CartItem[]
     dispatch: Dispatch<CartActions>
-    decreaseQuantity: (id: Guitar['id']) => void
     clearCart: () => void
 }
 
 export default function Header({
     cart,
     dispatch,
-    decreaseQuantity,
     clearCart,
 }: HeaderProps) {
 
@@ -66,7 +64,7 @@ export default function Header({
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
-                                                                onClick={() => decreaseQuantity(guitar.id)}
+                                                                onClick={() => dispatch({ type: 'decrease-quantity', paylod: { id: guitar.id } })}
                                                             >
                                                                 -
                                                             </button>
@@ -74,7 +72,7 @@ export default function Header({
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
-                                                                onClick={() => dispatch({type: 'increase-quantity', paylod: {id: guitar.id}})}
+                                                                onClick={() => dispatch({ type: 'increase-quantity', paylod: { id: guitar.id } })}
                                                             >
                                                                 +
                                                             </button>
@@ -83,7 +81,7 @@ export default function Header({
                                                             <button
                                                                 className="btn btn-danger"
                                                                 type="button"
-                                                                onClick={() => dispatch({type:'remove-from-cart', paylod: {id: guitar.id}})}
+                                                                onClick={() => dispatch({ type: 'remove-from-cart', paylod: { id: guitar.id } })}
                                                             >
                                                                 X
                                                             </button>
