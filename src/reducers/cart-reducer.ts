@@ -3,9 +3,9 @@ import { CartItem, Guitar } from "../types";
 
 export type CartActions =
     { type: 'add-to-cart', paylod: { item: Guitar } } |
-    { type: 'remove-from-cart', paylod: { id: Guitar['id'] } } |
-    { type: 'increase-quantity', paylod: { id: Guitar['id'] } } |
-    { type: 'decrease-quantity', paylod: { id: Guitar['id'] } } |
+    { type: 'remove-from-cart', paylod: { id: CartItem['id'] } } |
+    { type: 'increase-quantity', paylod: { id: CartItem['id'] } } |
+    { type: 'decrease-quantity', paylod: { id: CartItem['id'] } } |
     { type: 'clean-cart' }
 
 
@@ -48,6 +48,14 @@ export const cartReducer = (
             updatedCart = [...state.cart, newItem]
         }
 
+        return {
+            ...state,
+            cart: updatedCart
+        }
+    }
+
+    if (action.type === 'remove-from-cart') {
+        const updatedCart = state.cart.filter(item => item.id !== action.paylod.id)
         return {
             ...state,
             cart: updatedCart

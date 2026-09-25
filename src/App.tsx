@@ -13,8 +13,8 @@ function App() {
   return (
     <>
       <Header 
-        cart={state.cart}
-        removeFromCart={removeFromCart}
+        cart={state!.cart}
+        dispatch={dispatch}
         decreaseQuantity={decreaseQuantity}
         increaseQuantity={increaseQuantity}
         clearCart={clearCart}
