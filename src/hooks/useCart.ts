@@ -13,9 +13,7 @@ export const useCart = () => {
     const MIN_ITEMS = 1
     const MAX_ITEMS = 5
 
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart))
-    }, [cart])
+    
 
     function removeFromCart(id : Guitar['id']) {
         setCart(prevCart => prevCart.filter(guitar => guitar.id !== id))
